@@ -1,8 +1,6 @@
 import Pagination from "@/Components/Pagination";
-import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { USER_STATUS_CLASS_MAP, USER_STATUS_TEXT_MAP } from "@/constants.jsx";
 import { Head, router } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import TableHeading from "@/Components/TableHeading";
@@ -78,7 +76,6 @@ export default function Index({auth, users, queryParams = null, success}){
                                             >
                                                 ID
                                             </TableHeading>
-                                            <th className="px-3 py-2">Image</th>
                                             <TableHeading
                                             name="name"
                                             sort_field={queryParams.sort_field}
@@ -88,12 +85,12 @@ export default function Index({auth, users, queryParams = null, success}){
                                                 Name
                                             </TableHeading>
                                             <TableHeading
-                                            name="status"
+                                            name="email"
                                             sort_field={queryParams.sort_field}
                                             sort_direction={queryParams.sort_direction}
                                             sortChanged={sortChanged}
                                             >
-                                                Status
+                                                Email
                                             </TableHeading>
                                             <TableHeading
                                             name="created_at"
@@ -103,21 +100,11 @@ export default function Index({auth, users, queryParams = null, success}){
                                             >
                                                 Create Date
                                             </TableHeading>
-                                            <TableHeading
-                                            name="due_date"
-                                            sort_field={queryParams.sort_field}
-                                            sort_direction={queryParams.sort_direction}
-                                            sortChanged={sortChanged}
-                                            >
-                                                Due Date
-                                            </TableHeading>
-                                            <th className="px-3 py-2">Create By</th>
                                             <th className="px-3 py-2">Actions</th>
                                         </tr>
                                     </thead>
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                                         <tr className="text-nowrap">
-                                            <th className="px-3 py-2"></th>
                                             <th className="px-3 py-2"></th>
                                             <th className="px-3 py-2">
                                                 <TextInput 
@@ -129,45 +116,30 @@ export default function Index({auth, users, queryParams = null, success}){
                                                 />
                                             </th>
                                             <th className="px-3 py-2">
-                                                <SelectInput 
-                                                    className="w-full" 
-                                                    defaultValue={queryParams.status}
-                                                    placeholder="Status"
-                                                    onChange={(e) => searchFieldChanged('status', e.target.value)}
-                                                >
-                                                    <option value="">Select Status</option>
-                                                    <option value="pending">Pending</option>
-                                                    <option value="in_progress">In Progress</option>
-                                                    <option value="completed">Completed</option>
-                                                </SelectInput>
+                                                <TextInput 
+                                                        className="w-full"
+                                                        defaultValue={queryParams.email} 
+                                                        placeholder="User Email"
+                                                        onBlur={(e) => searchFieldChanged('email', e.target.value)}
+                                                        onKeyPress={(e) => onKeyPress('email', e)}
+                                                    />
                                             </th>
-                                            <th className="px-3 py-2"></th>
-                                            <th className="px-3 py-2"></th>
                                             <th className="px-3 py-2"></th>
                                             <th className="px-3 py-2"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {users.data && users.data.length > 0 ? (
-                                            users.data.map(user => (
+                                            users.data.map((user, index) => (
                                                 <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                                    <td className="px-3 py-2">{user.id}</td>
-                                                    <td className="px-3 py-2">
-                                                        <img src={user.image_path} style={{ width: 60 }} alt={user.name}/>
-                                                    </td>
-                                                    <th className="px-3 py-2 text-white text-nowrap hover:underline">
-                                                        <Link href={route('user.show', user.id)}>
+                                                    <td className="px-3 py-2">{index+1}</td>
+                                                    <th className="px-3 py-2 text-white text-nowrap">
                                                         {user.name}
-                                                        </Link>
                                                     </th>
                                                     <td className="px-3 py-2">
-                                                        <span className={"px-2 py-1 rounded text-white " + USER_STATUS_CLASS_MAP[user.status]}>
-                                                            {USER_STATUS_TEXT_MAP[user.status]}
-                                                        </span>
+                                                        {user.email}
                                                     </td>
                                                     <td className="px-3 py-2">{user.created_at}</td>
-                                                    <td className="px-3 py-2">{user.due_date}</td>
-                                                    <td className="px-3 py-2">{user.createdBy.name}</td>
                                                     <td className="px-3 py-2">
                                                         <Link href={route('user.edit', user.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1">Edit</Link>
                                                         <button onClick={(e) => deleteUser(user)} className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1">Delete</button>

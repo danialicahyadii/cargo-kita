@@ -35,6 +35,11 @@ export default function AuthenticatedLayout({ user, header, children }) {
                                     Task
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('user.index')} active={route().current('user.index')}>
+                                    Users
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
