@@ -24,10 +24,10 @@ class DashboardController extends Controller
         // dd($activeTasks);
         $activeTasks = TaskResource::collection($activeTasks);
 
-        return inertia('Dashboard', compact(
+        return inertia('DashboardCargo', compact(
             'totalPendingTasks',
-            'myPendingTasks', 
-            'totalProgressTasks', 
+            'myPendingTasks',
+            'totalProgressTasks',
             'myProgressTasks',
             'totalCompletedTasks',
             'myCompletedTasks',

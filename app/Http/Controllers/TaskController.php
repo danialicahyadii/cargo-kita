@@ -35,7 +35,7 @@ class TaskController extends Controller
         $tasks = $query->orderBy($sortField, $sortDirection)
         ->paginate(10)
         ->onEachSide(1);
-        
+
         return inertia("Task/Index", [
             'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
@@ -80,7 +80,6 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        
         return inertia('Task/Show', [
             'task' => new TaskResource($task),
         ]);
@@ -93,7 +92,7 @@ class TaskController extends Controller
     {
         $projects = Project::query()->orderBy('name', 'asc')->get();
         $users = User::query()->orderBy('name', 'asc')->get();
-        
+
         return inertia("Task/Edit", [
             'task' => new TaskResource($task),
             'projects' => ProjectResource::collection($projects),
@@ -148,7 +147,7 @@ class TaskController extends Controller
         $tasks = $query->orderBy($sortField, $sortDirection)
         ->paginate(10)
         ->onEachSide(1);
-        
+
         return inertia("Task/Index", [
             'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,

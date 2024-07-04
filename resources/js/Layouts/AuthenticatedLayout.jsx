@@ -14,9 +14,14 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                            <div className="shrink-0 flex items-center dark:bg-white">
+                                <Link href={route('dashboard')} class="flex items-center justify-between">
+                                    <img
+                                    src="/assets/logo-kop.webp"
+                                    class="h-12"
+                                    alt="Next Logistik"
+                                    />
+                                    {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">Flowbite</span> */}
                                 </Link>
                             </div>
 
@@ -25,7 +30,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            {/* <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('project.index')} active={route().current('project.index')}>
                                     Project
                                 </NavLink>
@@ -43,6 +48,11 @@ export default function AuthenticatedLayout({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('task.myTasks')} active={route().current('task.myTasks')}>
                                     My Tasks
+                                </NavLink>
+                            </div> */}
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('resi.index')} active={route().current('resi.index')}>
+                                    Bukti Tanda Terima
                                 </NavLink>
                             </div>
                         </div>

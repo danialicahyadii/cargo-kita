@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Resi;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,13 +17,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('admin123'),
-            'email_verified_at' => time(),
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@example.com',
+        //     'password' => bcrypt('admin123'),
+        //     'email_verified_at' => time(),
+        // ]);
 
-        Project::factory()->count(30)->hasTasks(30)->create();
+        // Project::factory()->count(30)->hasTasks(30)->create();
+
+        Resi::factory()->count(10)->create();
     }
 }

@@ -120,7 +120,7 @@ export default function Edit({auth, project}){
                                 <InputError message={errors.status} className="mt-2"/>
                             </div>
                             <div className="mt-4 text-right">
-                                <Link 
+                                <Link
                                 href={route('project.index')}
                                 className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2"
                                 >
