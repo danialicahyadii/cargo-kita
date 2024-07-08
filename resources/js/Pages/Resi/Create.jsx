@@ -20,6 +20,7 @@ export default function Create({auth}){
         berat_asli: '',
         biaya_kirim: '',
         biaya_packing: '',
+        biaya_asuransi: '',
     })
 
     const onSubmit = (e) => {

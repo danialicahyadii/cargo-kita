@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateResiRequest;
 use App\Http\Resources\ResiResource;
 use App\Models\Resi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ResiController extends Controller
 {
@@ -66,8 +67,7 @@ class ResiController extends Controller
      */
     public function show(Resi $resi)
     {
-        $pdf = app('dompdf.wrapper');
-        dd($pdf);
+        return view('pdf.invoice', compact('resi'));
         // return inertia('Resi/Show', [
         //     'resi' => new ResiResource($resi),
         // ]);
@@ -110,4 +110,12 @@ class ResiController extends Controller
     {
         return ('Ini Halaman untuk Cetak Penjualan Harian');
     }
+
+    public function cetakStiker($id)
+    {
+        $query = Resi::find($id);
+        $resi = $query;
+        return view('pdf.stiker', compact('resi'));
+    }
+
 }
